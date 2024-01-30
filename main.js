@@ -1,7 +1,8 @@
-const TelegramBot = require('node-telegram-bot-api');
+const TelegramBot = require('node-telegram-bot-api')
+require('dotenv').config()
 
 // Замініть 'YOUR_BOT_TOKEN' на реальний токен вашого бота
-const token = '6630875803:AAGz-C8N1tQsJvFgZypQdiqjnPVtv3TLrkg';
+const token = (process.env.BOT_TOKEN);
 
 // Об'єкт для зберігання стеку кнопок
 const buttonStack = [];
@@ -113,7 +114,7 @@ bot.on('message', (msg) => {
                 sendButtonMessage(chatId, 'Виберіть що Вас цікавить:', previousButtons);
             } else {
                 // Якщо стек кнопок порожній, відправляємо повідомлення про помилку
-                bot.sendMessage(chatId, 'Ви не можете повернутися далі.');
+                bot.sendMessage(chatId, 'Ви не можете повернутися далі. Введіть або натисніть /start.');
             }
             break;
 
