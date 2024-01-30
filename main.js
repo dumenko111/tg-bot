@@ -21,13 +21,6 @@ function sendButtonMessage(chatId, text, buttons) {
     bot.sendMessage(chatId, text, options);
 }
 
-// Функція для відправлення повідомлення з картинкою
-function sendImageMessage(chatId, image, text) {
-    bot.sendPhoto(chatId, image, { caption: text });
-}
-
-
-
 // Обробник команди /start
 bot.onText(/\/start/, (msg) => {
     const chatId = msg.chat.id;
@@ -39,8 +32,9 @@ bot.onText(/\/start/, (msg) => {
 
     buttonStack.push(mainButtons);
 
-    sendButtonMessage(chatId, 'Виберіть опцію:', mainButtons);
+    sendButtonMessage(chatId, 'Виберіть що Вас цікавить:', mainButtons);
 });
+
 
 // Обробник кнопок
 bot.on('message', (msg) => {
@@ -116,7 +110,7 @@ bot.on('message', (msg) => {
                 // Отримуємо попередній рівень кнопок
                 const previousButtons = buttonStack[buttonStack.length - 1];
                 // Відправляємо повідомлення з попередніми кнопками
-                sendButtonMessage(chatId, 'Виберіть опцію:', previousButtons);
+                sendButtonMessage(chatId, 'Виберіть що Вас цікавить:', previousButtons);
             } else {
                 // Якщо стек кнопок порожній, відправляємо повідомлення про помилку
                 bot.sendMessage(chatId, 'Ви не можете повернутися далі.');
